@@ -1,6 +1,14 @@
 # Angular-Cheat-Sheet
 
-Angular is a Js Framework that supports multipl laguages like ES5, Typescript , dart ... <br />
+What is Angular 
+Modules 
+Components 
+Template
+  Data binding
+  Directive 
+Services 
+
+Angular is a Js Framework that supports multiple laguages like ES5, Typescript , dart ... <br />
 - SPA (Single Page application):
 The single page application is a web application or website that interacts with the user by dynamically rewriting the current page, rather than loading entire new pages from the server.
 
@@ -72,6 +80,23 @@ Angular directives are classes with the ``@Directive`` metadata. It allows you t
   - ``ngSwitch``
 
   ## services 
-  Classes allowing to encapsulate business processes.
   
-we use dependency injection to associate a serice to its compnent.
+  Classes decorated by ``@Injectable()`` allowing to encapsulate business processes 
+  
+  ```typescript
+  import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class HeroService {
+
+  constructor() { }
+
+}
+  
+  ```
+  
+  By default, the Angular CLI command ``ng generate service`` registers a provider with the root injector for your service by including provider metadata, that is ``providedIn: 'root'`` in the ``@Injectable()`` decorator.
+  
+  
