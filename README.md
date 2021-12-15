@@ -61,7 +61,12 @@ Angular supports two-way data binding <br />
 - The (click) event binding calls the component's selectHero method when the user clicks a hero's name.
   
   
-#### Property binding 
+ ### Attribute directives
 
-
-#### Event binding 
+Angular directives are classes with the ``@Directive`` metadata. It allows you to modify the DOM and makes Templates dynamic
+  
+ Example of pre-defined directives: 
+  - ``ngModel`` :  modifies the behavior of an existing element (typically <input>) by setting its display value property and responding to change events.
+  - `` ngStyle ```
+  - `` ngClass`` 
+  - ``ngSwitch``
