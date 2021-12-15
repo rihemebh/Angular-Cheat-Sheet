@@ -1,10 +1,10 @@
 # Angular-Cheat-Sheet
 
-Angular is a Js Framework that supports multipl laguages like ES5, Typescript , dart ...
--SPA (Single Page application):
+Angular is a Js Framework that supports multipl laguages like ES5, Typescript , dart ... <br />
+- SPA (Single Page application):
 The single page application is a web application or website that interacts with the user by dynamically rewriting the current page, rather than loading entire new pages from the server.
 
-- Modular , fast , component based ,
+- Modular , fast , component based
 
 ## Module 
 a Module is a class that is decorated by ``@NgModule``
@@ -43,6 +43,6 @@ A template is the view (HTML file) associated to a specific component
 ### Data binding 
 Data binding is the mecanism that allows a component and its template to communicates with each others 
 
-Angular supports two-way data binding 
+Angular supports two-way data binding <br />
 <img src="https://github.com/rihemebh/Angular-Cheat-Sheet/blob/main/databinding.png"   alt="data-binding" />
 ### Event binding 
