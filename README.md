@@ -41,5 +41,8 @@ A component is a class decorated by ``@Component``
 A template is the view (HTML file) associated to a specific component 
 
 ### Data binding 
+Data binding is the mecanism that allows a component and its template to communicates with each others 
 
+Angular supports two-way data binding 
+<img src="https://github.com/rihemebh/Angular-Cheat-Sheet/blob/main/databinding.png"   alt="data-binding" />
 ### Event binding 
