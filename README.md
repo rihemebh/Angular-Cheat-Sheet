@@ -70,3 +70,8 @@ Angular directives are classes with the ``@Directive`` metadata. It allows you t
   - `` ngStyle ``
   - `` ngClass`` 
   - ``ngSwitch``
+
+  ## services 
+  Classes allowing to encapsulate business processes.
+  
+we use dependency injection to associate a serice to its compnent.
