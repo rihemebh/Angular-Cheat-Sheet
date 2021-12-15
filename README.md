@@ -67,6 +67,6 @@ Angular directives are classes with the ``@Directive`` metadata. It allows you t
   
  Example of pre-defined directives: 
   - ``ngModel`` :  modifies the behavior of an existing element (typically <input>) by setting its display value property and responding to change events.
-  - `` ngStyle ```
+  - `` ngStyle ``
   - `` ngClass`` 
   - ``ngSwitch``
