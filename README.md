@@ -1,12 +1,12 @@
 # Angular-Cheat-Sheet
 
-What is Angular 
-Modules 
-Components 
-Template
-  Data binding
-  Directive 
-Services 
+[What is Angular](#Angular) 
+- [Modules](#module)
+- [Components](#component)
+- [Template](#template)
+   - [Data binding](#data-binding)
+   - [Directives](#attribute-directives)
+- [Services](#services)
 
 Angular is a Js Framework that supports multiple laguages like ES5, Typescript , dart ... <br />
 - SPA (Single Page application):
@@ -29,8 +29,6 @@ bootstrap: [ AppComponent ] / *the component to be executed when the application
 })
 export class AppModule { }
 ```
-
-
 ## Component 
 
 A component is a class decorated by ``@Component``
@@ -51,8 +49,21 @@ A template is the view (HTML file) associated to a specific component
 ### Data binding 
 
 Data binding is the mecanism that allows a component and its template to communicates with each others 
+#### Property Binding (DOM <- Component)
+A one-way binding  that allows the DOM to recover data from the component. 
+The property is interpreted by the framework before it is added to the template.
+We can call a property using : 
+1. on-property
+2. [property]
+#### Event Binding (DOM -> Component)
+A one-way binding that allows intercations from the DOM to the components using events Handlers.
+we can call a method using: <br/>
+1. on-eventName
+2. (eventName)
 
-Angular supports two-way data binding <br />
+#### Tow-way Binding (DOM <-> Component)
+
+Angular supports two-way data binding that allows interctions from DOM to component and component to DOM using directives (**ngModel**)<br />
   <!--<img src="https://github.com/rihemebh/Angular-Cheat-Sheet/blob/main/databinding.png"   alt="data-binding" />-->
 
 ```html
@@ -61,13 +72,13 @@ Angular supports two-way data binding <br />
 <li (click)="selectHero(hero)"></li>
 ```
 
-
 - The {{hero.name}} interpolation displays the component's hero.name property value within the <li> element.
 
 - The [hero] property binding passes the value of selectedHero from the parent HeroListComponent to the hero property of the child HeroDetailComponent.
 
 - The (click) event binding calls the component's selectHero method when the user clicks a hero's name.
   
+
   
  ### Attribute directives
 
