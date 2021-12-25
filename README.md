@@ -6,6 +6,7 @@
 - [Template](#template)
    - [Data binding](#data-binding)
    - [Directives](#attribute-directives)
+- [Interaction between parent and child component](#interaction-between-parent-and-child-component)
 - [Services](#services)
 
 Angular is a Js Framework that supports multiple laguages like ES5, Typescript , dart ... <br />
@@ -90,6 +91,8 @@ Angular directives are classes with the ``@Directive`` metadata. It allows you t
   - `` ngClass`` 
   - ``ngSwitch``
 
+ 
+   
   ## services 
   
   Classes decorated by ``@Injectable()`` allowing to encapsulate business processes 
@@ -110,4 +113,22 @@ export class HeroService {
   
   By default, the Angular CLI command ``ng generate service`` registers a provider with the root injector for your service by including provider metadata, that is ``providedIn: 'root'`` in the ``@Injectable()`` decorator.
   
+   
+ ## Life cycle 
+   
+  Component Life Cycle 
+   - Call the component's constrcutor to create it 
+   - Add it to DOM 
+   - Call the children's constrcutor
+   - Add them to the DOM 
+   - Bind Data
+   - Destroy the component than remove it from th DOM 
+   
   
+   
+ ### Change detection
+ ### How it works ? 
+  
+   
+ ### Interaction between parent and child component
+   
