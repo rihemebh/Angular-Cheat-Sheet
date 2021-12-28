@@ -8,6 +8,8 @@
 - [Life Cycle](#life-cycle)
    - [Change Detection](#change-detection)
 - [Interaction between parent and child component](#interaction-between-parent-and-child-component)
+- [Directives](#directives)
+- [Pipes](#pipes)
 - [Services](#services)
 
 Angular is a Js Framework that supports multiple laguages like ES5, Typescript , dart ... <br />
@@ -167,31 +169,30 @@ Angular directives are classes with the ``@Directive`` metadata. It allows you t
             ng  g d <Directive-name>
 Angular  has 3 types of Directives : 
       
-      1. Built-in Attribute Directives: 
-           - ngStyle : adds and removes a set of HTML styles.
-<br/> 
-             ```html
-                  <p [ngStyle]="{'color' : myColor }" ></p>
+1. Built-in Attribute Directives: 
+   - **ngStyle** : adds and removes a set of HTML styles. <br/>
+      ```html
+       <p [ngStyle]="{'color' : myColor }" ></p>
+      ```
       
-             ```
-         - ngClass : adds and removes a set of CSS classes <br/>
-         ```typescript
-                  private isColoree:boolean=true;
-          ```
-      // colorer is also a CSS class
-         ```html
-                  <div [ngClass]="{ colorer : isColoree }" class="encadrer" ></p>
-      
-             ```
-         - ngModel : ndds two-way data binding to an HTML form element. <br/>
-      We need to Import ``FormsModule`` and add it to the NgModule's imports list.
+   - **ngClass** : adds and removes a set of CSS classes <br/>
+      ```typescript
+         private isColoree:boolean=true;
+       ```
+
+      ```html
+         <!--colorer is also a CSS class-->
+         <div [ngClass]="{ colorer : isColoree }" class="encadrer" ></p>
+      ```
+   - **ngModel** : ndds two-way data binding to an HTML form element. <br/>
+      We need to Import ``FormsModule`` and add it to the NgModule's imports list. <br/>
       ```html
       <label for="example-ngModel">[(ngModel)]:</label>
       <input [(ngModel)]="name" id="example-ngModel">
       ```
-      => tow-way bindint of th property name 
-      
-      2. Custom Attribute Directives: 
+      => tow-way binding of th property name 
+2. Custom Attribute Directives: <br/>
+     Create a new directive : 
      ```
       ng g d <directive-name>
      ```
@@ -203,27 +204,40 @@ Angular  has 3 types of Directives :
       constructor() {el.nativeElement.style.backgroundColor = 'yellow'; }
          }
      ```
-      ```html
+     Call the directive in your template
+     ```html
       <p appHighlight>Highlight me!</p>
      ```
   
      - **HostBinding** : associate a property to a directive <br />
-     ```typescript
-      @HostBinding('style.backgroundColor')
-         bg:string="red";
-     ```
+         ```typescript
+            @HostBinding('style.backgroundColor')
+             bg:string="red";
+         ```
       - **HostListener**: associate an event to a directive <br/>
-      ```typescript
-      @HostBinding('style.backgroundColor')
-         bg:string="red";
-     ```
-      3. Structural Directives:
-         - *ngIf
-         - *ngFor
-         - [ngSwitch]
- 
-   ## Pipes
-   
+         ```typescript
+            @HostBinding('style.backgroundColor')
+            bg:string="red";
+         ```
+ 3. Structural Directives:
+     - *ngIf
+     - *ngFor
+     - [ngSwitch]
+  ## Pipes
+ Pipes are used in Angular to Format data. It is a class that implements the PipeTransform interface and its ```transform()`` method <br/>
+ You can use predefined Pipes by Angular or create your own one.
+      
+   - Create a new Pipe : 
+      ```
+      ng g p <pipe-name>
+      ```
+   - Call the pipe in the template
+      ```html 
+      {{variableName | PipeName}}
+      <!--Using multiple Pipes -->
+      {{variableName | Pipe1 | Pipe2 |....}}
+      ```
+  
   ## Services 
   
   Classes decorated by ``@Injectable()`` allowing to encapsulate business processes 
