@@ -6,6 +6,7 @@
 - [Template](#template)
    - [Data binding](#data-binding)
 - [Life Cycle](#life-cycle)
+   - [Change Detection](#change-detection)
 - [Interaction between parent and child component](#interaction-between-parent-and-child-component)
 - [Services](#services)
 
@@ -14,6 +15,8 @@ Angular is a Js Framework that supports multiple laguages like ES5, Typescript ,
 The single page application is a web application or website that interacts with the user by dynamically rewriting the current page, rather than loading entire new pages from the server.
 
 - Modular , fast , component based
+
+
 
 ## Module 
 a Module is a class that is decorated by ``@NgModule``
@@ -62,11 +65,6 @@ we can call a method using: <br/>
 1. on-eventName
 2. (eventName)
 
-#### Tow-way Binding (DOM <-> Component)
-
-Angular supports two-way data binding that allows interctions from DOM to component and component to DOM using directives (**ngModel**)<br />
-  <!--<img src="https://github.com/rihemebh/Angular-Cheat-Sheet/blob/main/databinding.png"   alt="data-binding" />-->
-
 ```html
 <li>{{hero.name}}</li>
 <app-hero-detail [hero]="selectedHero"></app-hero-detail>
@@ -79,38 +77,150 @@ Angular supports two-way data binding that allows interctions from DOM to compon
 
 - The (click) event binding calls the component's selectHero method when the user clicks a hero's name.
   
+   
+#### Tow-way Binding (DOM <-> Component)
+
+Angular supports two-way data binding that allows interctions from DOM to component and component to DOM using directives (**ngModel**)<br />
+  <!--<img src="https://github.com/rihemebh/Angular-Cheat-Sheet/blob/main/databinding.png"   alt="data-binding" />-->
+
+
 
  ## Life cycle 
+   A component instance has a lifecycle that starts when Angular instantiates the component class and renders the component view along with its child views. 
+   The lifecycle continues with change detection, as Angular checks to see when data-bound properties change, and updates both the view and the component instance as needed.
+
    
-  Component Life Cycle 
-   - Call the component's constrcutor to create it 
-   - Add it to DOM 
-   - Call the children's constrcutor
-   - Add them to the DOM 
-   - Bind Data
-   - Destroy the component than remove it from th DOM 
+ |Method|description|When it is called|Use Cases
+ |---|---|---|---|
+ |ngOnChanges()| |When an input/output binding value changes|whenever there is a change in the @Input data property, we can do some more changes in this method by comparing previous and current values.|
+ |ngOnInit()|Initilize the component after construction|occurs only one time: After the first ngOnChanges|- fetch data <br/> - Initialize some third party lib|
+ |ngDoCheck()|Responsible for Change Detetction|Called immediately after ngOnChanges() on every change detection run, and immediately after ngOnInit() on the first run||
+ |ngOnDestroy()|Used for clean up| Just before the component is destroyed|The best place to clean up event handlers or any subscriptions|
    
-  
    
  ### Change detection
- ### How it works ? 
+   Change Detection means updating the DOM when the data has changed usually used with Data binding 
+ #### How it works ? 
+- The developer is making changes to the model (like a component’s bindings);
+- Angular’s change detection kicks in to propagate the changes;
+- Change detection goes through every components in the component tree (from top to bottom) to check if the model it depends on changed;
+- If Yes, it will update the component;
+- Angular updates the component’s view (DOM).
+   
+  | Create a View -> Create Bindings -> Process Bindings -> Update DOM -> run check |
+  |---|
+   
+   ** View is a data structure created with every bind 
   
    
  ## Interaction between parent and child component
+ - By default every component could see only its properties 
+ 
+  To make Intercation possible betwwen parents and children we should use : 
+   - @Input(): Sending data from **Parent -> child** using property Binding 
+   - @Output() : Sending data from **Child -> Parent** using Event Binding
    
+   (Imported from "@angular/core")
    
+   ### @Input : 
+   Decorate a property with @Input means this property could be seen and modified by the parent.   
    
+   **How to use it ?**
+   When the parent called the child compo
+   The child component :
+   ```typescript 
+   @Input() name = "defaultname"
+
+   ```
+   The parent template : 
+   ```html 
+   <app-child [name]="child" />
+   ```
+   ### @Output 
+   How it works ? 
    
+   - In the child component :
+      - create an eventEmitter and decorate it with @Output()
+      - create a method that will use this event emitter
+   ```typescript
+   @Output() sendDatatoParent = new EventEmitter()
+   sendData(){
+      this.sendDatatoPrent.emit(“I am the child ”);
+   }
+
+   ```
+   - In the child template: 
+      - call the method 
+   ```html
+   <button (click)=“sendData“ ></buttton>
+   ```
+   - In the parent template : 
+      - use the child's event Emitter as an event: 
+   ```html
+   <app-child (sendDatatoDad) = “processDataInparent”>
+   ```
+    => the parent will be able to process the data came from child which is the message "I am the child"
+   and execute some work in the *processDataInparent* method
  ## Directives
 
 Angular directives are classes with the ``@Directive`` metadata. It allows you to modify the DOM and makes Templates dynamic
+            ng  g d <Directive-name>
+Angular  has 3 types of Directives : 
+      
+      1. Built-in Attribute Directives: 
+           - ngStyle : adds and removes a set of HTML styles.
+<br/> 
+             ```html
+                  <p [ngStyle]="{'color' : myColor }" ></p>
+      
+             ```
+         - ngClass : adds and removes a set of CSS classes <br/>
+         ```typescript
+                  private isColoree:boolean=true;
+          ```
+      // colorer is also a CSS class
+         ```html
+                  <div [ngClass]="{ colorer : isColoree }" class="encadrer" ></p>
+      
+             ```
+         - ngModel : ndds two-way data binding to an HTML form element. <br/>
+      We need to Import ``FormsModule`` and add it to the NgModule's imports list.
+      ```html
+      <label for="example-ngModel">[(ngModel)]:</label>
+      <input [(ngModel)]="name" id="example-ngModel">
+      ```
+      => tow-way bindint of th property name 
+      
+      2. Custom Attribute Directives: 
+     ```
+      ng g d <directive-name>
+     ```
+     ```typescript
+      @Directive({
+            selector: '[appHighlight]'
+      })
+      export class HighlightDirective {
+      constructor() {el.nativeElement.style.backgroundColor = 'yellow'; }
+         }
+     ```
+      ```html
+      <p appHighlight>Highlight me!</p>
+     ```
   
- Example of pre-defined directives: 
-  - ``ngModel`` :  modifies the behavior of an existing element (typically <input>) by setting its display value property and responding to change events.
-  - `` ngStyle ``
-  - `` ngClass`` 
-  - ``ngSwitch``
-
+     - **HostBinding** : associate a property to a directive <br />
+     ```typescript
+      @HostBinding('style.backgroundColor')
+         bg:string="red";
+     ```
+      - **HostListener**: associate an event to a directive <br/>
+      ```typescript
+      @HostBinding('style.backgroundColor')
+         bg:string="red";
+     ```
+      3. Structural Directives:
+         - *ngIf
+         - *ngFor
+         - [ngSwitch]
  
    ## Pipes
    
@@ -136,3 +246,4 @@ export class HeroService {
   
    
    
+ 
