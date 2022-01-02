@@ -176,7 +176,7 @@ Angular directives are classes with the ``@Directive`` metadata. It allows you t
             ng  g d <Directive-name>
 Angular  has 3 types of Directives : 
       
-1. Built-in Attribute Directives: 
+### 1. Built-in Attribute Directives: 
    - **ngStyle** : adds and removes a set of HTML styles. <br/>
       ```html
        <p [ngStyle]="{'color' : myColor }" ></p>
@@ -198,7 +198,7 @@ Angular  has 3 types of Directives :
       <input [(ngModel)]="name" id="example-ngModel">
       ```
       => tow-way binding of th property name 
-2. Custom Attribute Directives: <br/>
+### 2. Custom Attribute Directives: <br/>
      Create a new directive : 
      ```
       ng g d <directive-name>
@@ -226,7 +226,7 @@ Angular  has 3 types of Directives :
             @HostBinding('style.backgroundColor')
             bg:string="red";
          ```
- 3. Structural Directives:
+ ### 3. Structural Directives:
      - *ngIf
      - *ngFor
      - [ngSwitch]
