@@ -373,3 +373,5 @@ Use property binding
 <!--div that englobes all the properties that we want to group -->
 <div ngModelGroup= "user" #userData= "ngModelGroup" >
 ```
+
+## HTTP Requests 
