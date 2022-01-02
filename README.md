@@ -357,12 +357,12 @@ Angular uses attributes (type="email", ... ) and directives(required , ... ) as 
 	- Untouched : inform that the form has been touched or not 
 	- Pristine : the opposite of dirty 
 #### Associate data to property 
-#formName : " ngForm "
-#PropertyName = " ngModel "
+- #formName : "ngForm"
+- #PropertyName = " ngModel "
 ```html
-<input name="password" #pwdInput = "ngModel">
+<input ngModel name="password" #pwdInput="ngModel">
  <div *ngIf="pwdInput.invalid && pwdInput.dirty" >
-	     password not valid
+password not valid
 </div>
 </input>
 ```
