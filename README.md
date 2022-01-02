@@ -349,8 +349,7 @@ Children :[
     ```
      
 ### Validation: 
-Angular uses attributes (required , type="email", ... ) and directives([] , ... ) as validators to the form 
-
+Angular uses attributes (type="email", ... ) and directives(required , ... ) as validators to the form 
 
 - Form states : 
 	- Dirty : inform  if a property has been modified or not 
@@ -358,8 +357,19 @@ Angular uses attributes (required , type="email", ... ) and directives([] , ... 
 	- Untouched : inform that the form has been touched or not 
 	- Pristine : the opposite of dirty 
 #### Associate data to property 
-#formName : < ngForm >
-#PropertyName = < ngModel >
+#formName : " ngForm "
+#PropertyName = " ngModel "
+```html
+<input name="password" #pwdInput = "ngModel">
+ <div *ngIf="pwdInput.invalid && pwdInput.dirty" >
+	     password not valid
+</div>
+</input>
+```
 #### Default values 
 Use property binding 
 #### Grouping Form : ``ngModelGroup``
+```html
+<!--div that englobes all the properties that we want to group -->
+<div ngModelGroup= "user" #userData= "ngModelGroup" >
+```
