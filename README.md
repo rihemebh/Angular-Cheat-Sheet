@@ -1,23 +1,25 @@
 # Angular-Cheat-Sheet
 
-[What is Angular](#Angular) 
-- [Modules](#module)
-- [Components](#component)
-- [Template](#template)
+[What is Angular](#angular) 
+- [Modules](#modules)
+- [Components](#components)
+- [Templates](#templates)
    - [Data binding](#data-binding)
 - [Life Cycle](#life-cycle)
    - [Change Detection](#change-detection)
 - [Interaction between parent and child component](#interaction-between-parent-and-child-component)
 - [Directives](#directives)
-   - [Built-in Attribute Directives](#1.-built-in-attribute-directives:)
-   - [Custom Attribute Directives](#2.-custom-attribute-directives:)
-   - [Structural Directives](#3.-structural-directives:)
+   - [Built-in Attribute Directives](#1-built-in-attribute-directives)
+   - [Custom Attribute Directives](#2-custom-attribute-directives)
+   - [Structural Directives](#3-structural-directives)
 - [Pipes](#pipes)
 - [Services](#services)
 - [Routes](#routes)
 - [Forms](#forms)
 - [HTTP Requests](#http-requests)
-- 
+
+
+## Angular
 
 Angular is a Js Framework that supports multiple laguages like ES5, Typescript , dart ... <br />
 - SPA (Single Page application):
@@ -27,9 +29,9 @@ The single page application is a web application or website that interacts with 
 
 
 
-## Module 
+## Modules
 a Module is a class that is decorated by ``@NgModule``
-appModule is the main module that is in charge of the application bootstrapping 
+``appModule`` is the main module that is in charge of the application bootstrapping 
 
 ```typescript 
 import { NgModule } from '@angular/core';
@@ -42,7 +44,7 @@ bootstrap: [ AppComponent ] / *the component to be executed when the application
 })
 export class AppModule { }
 ```
-## Component 
+## Components
 
 A component is a class decorated by ``@Component``
 
@@ -55,7 +57,7 @@ A component is a class decorated by ``@Component``
 })
 ```
 
-## Template 
+## Templates
 
 A template is the view (HTML file) associated to a specific component 
 
@@ -110,11 +112,11 @@ Angular supports two-way data binding that allows interctions from DOM to compon
  ### Change detection
    Change Detection means updating the DOM when the data has changed usually used with Data binding 
  #### How it works ? 
-- The developer is making changes to the model (like a component’s bindings);
-- Angular’s change detection kicks in to propagate the changes;
-- Change detection goes through every components in the component tree (from top to bottom) to check if the model it depends on changed;
-- If Yes, it will update the component;
-- Angular updates the component’s view (DOM).
+ - The developer is making changes to the model (like a component’s bindings);
+ - Angular’s change detection kicks in to propagate the changes;
+ - Change detection goes through every components in the component tree (from top to bottom) to check if the model it depends on changed;
+ - If Yes, it will update the component;
+ - Angular updates the component’s view (DOM).
    
   | Create a View -> Create Bindings -> Process Bindings -> Update DOM -> run check |
   |---|
@@ -126,8 +128,8 @@ Angular supports two-way data binding that allows interctions from DOM to compon
  - By default every component could see only its properties 
  
   To make Intercation possible betwwen parents and children we should use : 
-   - @Input(): Sending data from **Parent -> child** using property Binding 
-   - @Output() : Sending data from **Child -> Parent** using Event Binding
+ - @Input(): Sending data from **Parent -> child** using property Binding 
+ - @Output() : Sending data from **Child -> Parent** using Event Binding
    
    (Imported from "@angular/core")
    
@@ -148,7 +150,7 @@ Angular supports two-way data binding that allows interctions from DOM to compon
    ### @Output 
    How it works ? 
    
-   - In the child component :
+ - In the child component :
       - create an eventEmitter and decorate it with @Output()
       - create a method that will use this event emitter
    ```typescript
@@ -158,26 +160,28 @@ Angular supports two-way data binding that allows interctions from DOM to compon
    }
 
    ```
-   - In the child template: 
+ - In the child template: 
       - call the method 
    ```html
    <button (click)=“sendData“ ></buttton>
    ```
-   - In the parent template : 
+ - In the parent template : 
       - use the child's event Emitter as an event: 
    ```html
    <app-child (sendDatatoDad) = “processDataInparent”>
    ```
-    => the parent will be able to process the data came from child which is the message "I am the child"
-   and execute some work in the *processDataInparent* method
+=> the parent will be able to process the data came from child which is the message "I am the child" and execute some work in the *processDataInparent* method
  ## Directives
 
 Angular directives are classes with the ``@Directive`` metadata. It allows you to modify the DOM and makes Templates dynamic
-            ng  g d <Directive-name>
+
+ ng  g d <Directive-name>
+      
 Angular  has 3 types of Directives : 
       
 ### 1. Built-in Attribute Directives: 
-   - **ngStyle** : adds and removes a set of HTML styles. <br/>
+      
+  - **ngStyle** : adds and removes a set of HTML styles. <br/>
       ```html
        <p [ngStyle]="{'color' : myColor }" ></p>
       ```
@@ -198,11 +202,13 @@ Angular  has 3 types of Directives :
       <input [(ngModel)]="name" id="example-ngModel">
       ```
       => tow-way binding of th property name 
+      
 ### 2. Custom Attribute Directives: <br/>
-     Create a new directive : 
-     ```
+  - Create a new directive : 
+     ```cmd
       ng g d <directive-name>
      ```
+      
      ```typescript
       @Directive({
             selector: '[appHighlight]'
@@ -211,25 +217,26 @@ Angular  has 3 types of Directives :
       constructor() {el.nativeElement.style.backgroundColor = 'yellow'; }
          }
      ```
-     Call the directive in your template
+  - Call the directive in your template
      ```html
       <p appHighlight>Highlight me!</p>
      ```
   
-     - **HostBinding** : associate a property to a directive <br />
+   - **HostBinding** : associate a property to a directive <br />
          ```typescript
             @HostBinding('style.backgroundColor')
              bg:string="red";
          ```
-      - **HostListener**: associate an event to a directive <br/>
+   - **HostListener**: associate an event to a directive <br/>
          ```typescript
             @HostBinding('style.backgroundColor')
             bg:string="red";
          ```
  ### 3. Structural Directives:
-     - *ngIf
-     - *ngFor
-     - [ngSwitch]
+    - *ngIf
+    - *ngFor
+    - [ngSwitch]
+      
   ## Pipes
  Pipes are used in Angular to Format data. It is a class that implements the PipeTransform interface and its ```transform()`` method <br/>
  You can use predefined Pipes by Angular or create your own one.
@@ -262,9 +269,97 @@ export class HeroService {
 }
   
   ```
-  
   By default, the Angular CLI command ``ng generate service`` registers a provider with the root injector for your service by including provider metadata, that is ``providedIn: 'root'`` in the ``@Injectable()`` decorator.
   
-   
-   
- 
+      
+## Routes
+ Before we start we need to: <br/> 
+      1. Create a routing file : ``app.routing.ts``  
+      2. Import the RouteModule <br/>
+      3. Define our routes
+  <br/>    
+ In the template use : <br/>
+      
+ ```html 
+      <router-outlet></router-outlet>
+ ```
+### Navigate between routes : 
+- ``RouterLink``  directive : 
+      
+    ```html
+           <a [routerLink]="[‘home’]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" > home  </a>
+           <!--We use : [routerLinkActiveOptions]="{exact: true}" 
+            to tell angular that we want only this link to be active and not its parent (dropdwon button case) -->
+    ```
+- Router Service : Trigger a route from a component 
+   - Redirection 
+      ```typescript
+                   export class HomeComponent{
+                       constructor(private router:Router) { }
+                        onNaviger(){
+                            this.router.navigate(['/about/10'], {queryParams:{'qpVar':'je suis un qp'}});
+                         }
+                     }
+       ```
+   - Get Params : 
+      
+       ```typescript 
+           This.router.activatedRoute.params.subscribe(params=>{this.monParam=params['param']});
+            // subscribe to an observable so you have do insubscribe from it in the ngOnDestroy() 
+        ```
+  [Learn more about oservable]()
+      
+ ### Prefix : 
+    When you need to prefix routes based on features 
+   **Use case** : It is helpful when you need to change the template through your app 
+      you can make a prefix for each template and each prefix has his routes children
+      
+```typescript
+path: ‘<prefix>’,
+Children :[ 
+{path: “<route1>”, compoennet: “component1”},
+{path: “<route2>”, compoennet: “component2”}
+]
+```
+ ## Forms
+      
+  Angular uses 2 form approaches: 
+        - Template-driven approach 
+        - Reactive approach 
+      
+ ### Template-driven Approach: 
+  - Import ``FormsModule``       
+  - Use the ``<form> </form>`` tag to let angular detect that we are using forms 
+  - Add ``ngModel`` and name property to tags that you want them to be managed by angular form
+   ```html 
+ <input type="text" id="username" class="formcontrol" 
+ ngModel 
+ name="username" >
+  ```
+  - Associate the  form object to a component variable using ``ngForm`` and references using ``#``
+     ``` html 
+     <form (ngSubmit)="onSubmit(formulaire)" #formulaire="ngForm">
+     ```
+     ```typescript
+       export class TmeplateDrivenComponent{
+			onSubmit(formulaire: NgForm){
+				console.log(formulaire);
+			}
+		}
+    ```
+     
+### Validation: 
+Angular uses attributes (required , type="email", ... ) and directives([] , ... ) as validators to the form 
+
+
+- Form states : 
+	- Dirty : inform  if a property has been modified or not 
+	- Valid : inform that the form is valid of not based on validators 
+	- Untouched : inform that the form has been touched or not 
+	- Pristine : the opposite of dirty 
+#### Associate data to property 
+#formName : < ngForm >
+#PropertyName = < ngModel >
+#### Default values 
+Use property binding 
+#### Grouping Form : ``ngModelGroup``
