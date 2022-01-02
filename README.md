@@ -9,8 +9,15 @@
    - [Change Detection](#change-detection)
 - [Interaction between parent and child component](#interaction-between-parent-and-child-component)
 - [Directives](#directives)
+   - [Built-in Attribute Directives](#1.-built-in-attribute-directives:)
+   - [Custom Attribute Directives](#2.-custom-attribute-directives:)
+   - [Structural Directives](#3.-structural-directives:)
 - [Pipes](#pipes)
 - [Services](#services)
+- [Routes](#routes)
+- [Forms](#forms)
+- [HTTP Requests](#http-requests)
+- 
 
 Angular is a Js Framework that supports multiple laguages like ES5, Typescript , dart ... <br />
 - SPA (Single Page application):
