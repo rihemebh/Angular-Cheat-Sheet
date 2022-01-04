@@ -287,19 +287,21 @@ export class HeroService {
 - ``RouterLink``  directive : 
       
     ```html
-           <a [routerLink]="[‘home’]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" > home  </a>
+           <a [routerLink]="[‘home’]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >
+		   home  </a>
            <!--We use : [routerLinkActiveOptions]="{exact: true}" 
-            to tell angular that we want only this link to be active and not its parent (dropdwon button case) -->
+            to tell angular that we want only this link to be 
+             active and not its parent (dropdown button case) -->
     ```
 - Router Service : Trigger a route from a component 
    - Redirection 
       ```typescript
-                   export class HomeComponent{
-                       constructor(private router:Router) { }
-                        onNaviger(){
-                            this.router.navigate(['/about/10'], {queryParams:{'qpVar':'je suis un qp'}});
-                         }
+           export class HomeComponent{
+                 constructor(private router:Router) { }
+                    onNaviger(){
+                      this.router.navigate(['/about/10'], {queryParams:{'qpVar':'je suis un qp'}});
                      }
+          }
        ```
    - Get Params : 
       
@@ -307,20 +309,21 @@ export class HeroService {
            This.router.activatedRoute.params.subscribe(params=>{this.monParam=params['param']});
             // subscribe to an observable so you have do insubscribe from it in the ngOnDestroy() 
         ```
-  [Learn more about oservable]()
+  [Learn more about oservable](https://angular.io/guide/observables)
       
  ### Prefix : 
-    When you need to prefix routes based on features 
-   **Use case** : It is helpful when you need to change the template through your app 
-      you can make a prefix for each template and each prefix has his routes children
-      
+    Example : all routes related to user management should start with "/user"
 ```typescript
-path: ‘<prefix>’,
+path: ‘user’,
 Children :[ 
-{path: “<route1>”, compoennet: “component1”},
-{path: “<route2>”, compoennet: “component2”}
+{path: “delete/:id”, compoennet: “component1”},
+{path: “add”, compoennet: “component2”}
 ]
 ```
+   **Use case** : When you need to change the layout from screen to another 
+      you can make a prefix for each layout and each prefix has its compoenent and its children routes 
+      
+
  ## Forms
       
   Angular uses 2 form approaches: 
