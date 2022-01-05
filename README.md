@@ -251,8 +251,8 @@ Angular  has 3 types of Directives :
       <!--Using multiple Pipes -->
       {{variableName | Pipe1 | Pipe2 |....}}
       ```
-  
-  ## Services 
+	   
+## Services 
   
   Classes decorated by ``@Injectable()`` allowing to encapsulate business processes 
   
@@ -376,5 +376,71 @@ Use property binding
 <!--div that englobes all the properties that we want to group -->
 <div ngModelGroup= "user" #userData= "ngModelGroup" >
 ```
+	
+
+## Observable 
+Observables provide support for passing messages between parts of your application
+**Usecases** :  event handling, asynchronous programming, and handling multiple values.
+	
+An Observable instance begins publishing values only when someone subscribes to it. You subscribe by calling the ``subscribe()`` method of the instance, passing an observer
+object to receive the notifications.
+	
+```typescript
+const observable = new Observable(
+(observer) => {
+let i = 5;
+setInterval(() => {
+if (!i) {
+observer.complete();
+}
+observer.next(i--);
+}, 1000);
+});
+	
+// subscribe to an observable and define the next() function
+observable.subscribe(
+(val) => {
+console.log(val);
+}
+);
+
+```
+	
+### Operators : pipe, filter, map 
+ We could pipe, filter or map the content of the stream then subscribe to it 
+example: observ.pipe(x=> x%2 == 0).subscribe(next())
+	
+### Subject 
+It is a particular type of an observable, it coudld work as an observable or observer based on the context
 
 ## HTTP Requests 
+Import: 
+	
+``import {HttpClientModule} from "@angular/common/http"; ``
+
+Inject the service: 
+``constructor(private http:HttpClient) { }``
+
+### GET
+get is a HTTP function that returns an Observable
+```typescript 
+this.http.get(API_URL).subscribe( 
+	(response:Response)=>{ //ToDo with DATA }, 
+	(err:Error)=>{ //ToDo with error }, 
+	() => { console.log('Data transmission complete'); } );
+```
+	
+### POST
+```typescript 
+this.http.post(API_URL,dataToSend).subscribe(
+	(response:Response)=>{
+		//ToDo with response
+	},
+	(err:Error)=>{
+		//ToDo with error
+	},
+	() => {
+		console.log('complete');
+	}
+);
+```
