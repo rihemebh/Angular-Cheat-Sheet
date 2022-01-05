@@ -323,7 +323,7 @@ Children :[
    **Use case** : When you need to change the layout from screen to another 
       you can make a prefix for each layout and each prefix has its compoenent and its children routes 
       
-
+PS: Children should be sorted from most generic to least generic
  ## Forms
       
   Angular uses 2 form approaches: 
