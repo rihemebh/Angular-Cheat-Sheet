@@ -309,7 +309,7 @@ export class HeroService {
            This.router.activatedRoute.params.subscribe(params=>{this.monParam=params['param']});
             // subscribe to an observable so you have do insubscribe from it in the ngOnDestroy() 
         ```
-  [Learn more about oservable](https://angular.io/guide/observables)
+  [Learn more about oservable](#observable)
       
  ### Prefix : 
     Example : all routes related to user management should start with "/user"
@@ -323,7 +323,7 @@ Children :[
    **Use case** : When you need to change the layout from screen to another 
       you can make a prefix for each layout and each prefix has its compoenent and its children routes 
       
-PS: Children should be sorted from most generic to least generic
+PS: Children should be sorted from most specific  to least specific
  ## Forms
       
   Angular uses 2 form approaches: 
