@@ -10,7 +10,7 @@
 - [Interaction between parent and child component](#interaction-between-parent-and-child-component)
 - [Directives](#directives)
    - [Built-in Attribute Directives](#1-built-in-attribute-directives)
-   - [Custom Attribute Directives](#2-custom-attribute-directives)
+   - [Custom Attribute Directives](#2-custom-attribute-directives-)
    - [Structural Directives](#3-structural-directives)
 - [Pipes](#pipes)
 - [Services](#services)
@@ -175,7 +175,10 @@ Angular supports two-way data binding that allows interctions from DOM to compon
 
 Angular directives are classes with the ``@Directive`` metadata. It allows you to modify the DOM and makes Templates dynamic
 
- ng  g d <Directive-name>
+ - Create a new directive : 
+     ```cmd
+      ng g d <directive-name>
+     ```
       
 Angular  has 3 types of Directives : 
       
@@ -204,19 +207,14 @@ Angular  has 3 types of Directives :
       => tow-way binding of th property name 
       
 ### 2. Custom Attribute Directives: <br/>
-  - Create a new directive : 
-     ```cmd
-      ng g d <directive-name>
-     ```
-      
-     ```typescript
-      @Directive({
+```typescript
+         @Directive({
             selector: '[appHighlight]'
-      })
-      export class HighlightDirective {
-      constructor() {el.nativeElement.style.backgroundColor = 'yellow'; }
+         })
+          export class HighlightDirective {
+           constructor() {el.nativeElement.style.backgroundColor = 'yellow'; }
          }
-     ```
+ ```
   - Call the directive in your template
      ```html
       <p appHighlight>Highlight me!</p>
@@ -233,16 +231,17 @@ Angular  has 3 types of Directives :
             bg:string="red";
          ```
  ### 3. Structural Directives:
-    - *ngIf
-    - *ngFor
-    - [ngSwitch]
+- *ngIf
+- *ngFor
+- [ngSwitch]
       
   ## Pipes
- Pipes are used in Angular to Format data. It is a class that implements the PipeTransform interface and its ```transform()`` method <br/>
+ Pipes are used in Angular to Format data. It is a class that implements the PipeTransform interface and its ```transform()``` method 
+<br/>
  You can use predefined Pipes by Angular or create your own one.
       
    - Create a new Pipe : 
-      ```
+      ```cmd
       ng g p <pipe-name>
       ```
    - Call the pipe in the template
@@ -312,13 +311,14 @@ export class HeroService {
   [Learn more about oservable](#observable)
       
  ### Prefix : 
-    Example : all routes related to user management should start with "/user"
+Example : all routes related to user management should start with "/user"
+	   
 ```typescript
-path: ‘user’,
-Children :[ 
-{path: “delete/:id”, compoennet: “component1”},
-{path: “add”, compoennet: “component2”}
-]
+	 path: ‘user’,
+	 Children :[ 
+	 {path: “delete/:id”, compoennet: “component1”},
+	 {path: “add”, compoennet: “component2”}
+        ]
 ```
    **Use case** : When you need to change the layout from screen to another 
       you can make a prefix for each layout and each prefix has its compoenent and its children routes 
@@ -327,8 +327,8 @@ PS: Children should be sorted from most specific  to least specific
  ## Forms
       
   Angular uses 2 form approaches: 
-        - Template-driven approach 
-        - Reactive approach 
+-  Template-driven approach 
+-  Reactive approach 
       
  ### Template-driven Approach: 
   - Import ``FormsModule``       
